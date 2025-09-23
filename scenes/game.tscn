@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b3xdwy280r0aq"]
+[gd_scene load_steps=23 format=3 uid="uid://b3xdwy280r0aq"]
 
 [ext_resource type="Texture2D" uid="uid://013mxv8awqyb" path="res://assets/background/space-desktop-background-8uwm4y07uyctyyb1.jpg" id="1_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://dj2ufhhreaphi" path="res://assets/sprites/world_tileset.png" id="1_lnu2h"]
@@ -8,9 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://b33wjx8euq8m2" path="res://assets/background/background4acrop.PNG" id="4_p57ef"]
 [ext_resource type="PackedScene" uid="uid://d0ltkyftldw5m" path="res://scenes/enemies.tscn" id="7_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://cq4nbuofpjgq6" path="res://scenes/drone.tscn" id="8_gee14"]
-[ext_resource type="PackedScene" uid="uid://cabsslgo7i8gx" path="res://scenes/pc.tscn" id="9_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://nrwbn7x3f8p" path="res://scenes/pc.tscn" id="9_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://c6n4dtexb5qme" path="res://assets/sprites/protection field.png" id="10_vtaks"]
 [ext_resource type="PackedScene" uid="uid://0dd8hdwtscnq" path="res://scenes/antenna.tscn" id="11_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://cir02cylxrmdd" path="res://scenes/ui.tscn" id="12_dinhu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p57ef"]
 
@@ -1134,19 +1135,11 @@ position = Vector2(505, 399)
 [node name="Drone" parent="." instance=ExtResource("8_gee14")]
 position = Vector2(-259, -267)
 
-[node name="Control" parent="." instance=ExtResource("9_0tnpc")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = -92.0
-offset_top = 342.0
-offset_right = -92.0
-offset_bottom = 342.0
-grow_horizontal = 1
-grow_vertical = 1
+[node name="PC" parent="." instance=ExtResource("9_0tnpc")]
+position = Vector2(-196, 259)
 
 [node name="Protection field" type="AnimatedSprite2D" parent="."]
-position = Vector2(105, 104)
+position = Vector2(146, 95)
 scale = Vector2(7.99219, 9.21875)
 sprite_frames = SubResource("SpriteFrames_ca42v")
 autoplay = "default"
@@ -1156,3 +1149,5 @@ frame_progress = 0.640437
 position = Vector2(-411, -124)
 rotation = 0.482913
 scale = Vector2(3.34375, 3.125)
+
+[node name="UI" parent="." instance=ExtResource("12_dinhu")]

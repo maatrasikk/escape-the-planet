@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://cq4nbuofpjgq6"]
+[gd_scene load_steps=16 format=3 uid="uid://cq4nbuofpjgq6"]
 
+[ext_resource type="Script" uid="uid://cfcbt08ebxc3o" path="res://scripts/drone.gd" id="1_1r4ts"]
 [ext_resource type="Texture2D" uid="uid://1uvkf4dc8hey" path="res://assets/sprites/Drone.png" id="1_dil0n"]
 [ext_resource type="Texture2D" uid="uid://clt30n3k1y2do" path="res://assets/sprites/drone search.png" id="2_knnud"]
 
@@ -90,6 +91,7 @@ animations = [{
 }]
 
 [node name="Drone" type="CharacterBody2D"]
+script = ExtResource("1_1r4ts")
 
 [node name="Drone" type="AnimatedSprite2D" parent="."]
 position = Vector2(60, -63)

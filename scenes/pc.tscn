@@ -1,20 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://cabsslgo7i8gx"]
+[gd_scene load_steps=4 format=3 uid="uid://nrwbn7x3f8p"]
 
 [ext_resource type="Texture2D" uid="uid://c8gcgjghhv0le" path="res://assets/sprites/pc.png" id="1_5rl7t"]
+[ext_resource type="Script" uid="uid://bf5vfcdu2bxkb" path="res://scripts/pc.gd" id="1_qd3p6"]
 
-[node name="Control" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = 1.0
-offset_right = -1.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rl7t"]
+size = Vector2(149, 127)
+
+[node name="PC" type="Area2D"]
+script = ExtResource("1_qd3p6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2, 0)
-scale = Vector2(0.195652, 0.187603)
+position = Vector2(109.687, 80.8125)
+scale = Vector2(0.193012, 0.214256)
 texture = ExtResource("1_5rl7t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(111.5, 81.5)
+shape = SubResource("RectangleShape2D_5rl7t")
