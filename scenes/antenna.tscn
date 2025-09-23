@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://0dd8hdwtscnq"]
+
+[ext_resource type="Texture2D" uid="uid://cuxs4fspc4i34" path="res://assets/sprites/antenna.png" id="1_cymb1"]
+
+[node name="Antenna" type="Sprite2D"]
+position = Vector2(39, -33)
+scale = Vector2(2.21875, 2.03125)
+texture = ExtResource("1_cymb1")
