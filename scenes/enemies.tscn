@@ -32,40 +32,41 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_010eu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfngh"]
 atlas = ExtResource("2_q4yn1")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pfngh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_csyei"]
 atlas = ExtResource("2_q4yn1")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_csyei"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_iv5d7"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_010eu")
+"texture": SubResource("AtlasTexture_pfngh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pfngh")
+"texture": SubResource("AtlasTexture_csyei")
 }],
 "loop": true,
 "name": &"default",
-"speed": 3.0
+"speed": 5.0
 }]
 
-[node name="Enemies" type="CharacterBody2D"]
+[node name="Enemies" type="Node2D"]
 
-[node name="Rose enemy" type="AnimatedSprite2D" parent="."]
-position = Vector2(-97, -100)
-scale = Vector2(2.96875, 3.10938)
+[node name="RoseEnemy" type="AnimatedSprite2D" parent="."]
+position = Vector2(-91, -80)
+scale = Vector2(2.59375, 2.53125)
 sprite_frames = SubResource("SpriteFrames_010eu")
 autoplay = "default"
 frame = 2
-frame_progress = 0.0577195
+frame_progress = 0.0909087
 
-[node name="Green Enemy" type="AnimatedSprite2D" parent="."]
-position = Vector2(191, -363)
-scale = Vector2(5.48438, 5.17188)
-sprite_frames = SubResource("SpriteFrames_csyei")
+[node name="GreenEnemy" type="AnimatedSprite2D" parent="."]
+position = Vector2(176, -270)
+scale = Vector2(4.15625, 4.0625)
+sprite_frames = SubResource("SpriteFrames_iv5d7")
 autoplay = "default"
+frame_progress = 0.224554

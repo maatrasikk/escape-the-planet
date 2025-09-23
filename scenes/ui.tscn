@@ -4,39 +4,119 @@
 
 [node name="UI" type="CanvasLayer"]
 
-[node name="DayPanel" type="Panel" parent="." groups=["day_panel"]]
+[node name="Panel" type="Panel" parent="." groups=["day_panel"]]
 offset_right = 111.0
 offset_bottom = 48.0
 script = ExtResource("1_tdwok")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DayPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 0
 offset_right = 222.0
 offset_bottom = 120.0
 
-[node name="DayLabel" type="Label" parent="DayPanel/VBoxContainer"]
+[node name="TopRow" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 
-[node name="EnergyLabel" type="Label" parent="DayPanel/VBoxContainer"]
+[node name="DayLabel" type="Label" parent="Panel/VBoxContainer/TopRow"]
+layout_mode = 2
+text = "День: 1"
+
+[node name="EnergyLabel" type="Label" parent="Panel/VBoxContainer/TopRow"]
+layout_mode = 2
+text = "Энергия: 100 / 100"
+
+[node name="CloseBtn" type="Button" parent="Panel/VBoxContainer/TopRow"]
+layout_mode = 2
+text = "Х"
+
+[node name="ProgressGrid" type="GridContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/ProgressGrid"]
+layout_mode = 2
+text = "Обломки"
+
+[node name="DebrisValueLabel" type="Label" parent="Panel/VBoxContainer/ProgressGrid"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DayPanel/VBoxContainer"]
+[node name="Label3" type="Label" parent="Panel/VBoxContainer/ProgressGrid"]
+layout_mode = 2
+text = "Антенна"
+
+[node name="AntennaValueLabel" type="Label" parent="Panel/VBoxContainer/ProgressGrid"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="DayPanel/VBoxContainer/HBoxContainer"]
+[node name="Label5" type="Label" parent="Panel/VBoxContainer/ProgressGrid"]
 layout_mode = 2
-text = "Spend"
+text = "Щит"
 
-[node name="SpendSpin" type="SpinBox" parent="DayPanel/VBoxContainer/HBoxContainer"]
+[node name="ShieldValueLabel" type="Label" parent="Panel/VBoxContainer/ProgressGrid"]
 layout_mode = 2
 
-[node name="NextDayButton" type="Button" parent="DayPanel/VBoxContainer/HBoxContainer"]
+[node name="Label7" type="Label" parent="Panel/VBoxContainer/ProgressGrid"]
 layout_mode = 2
-text = "Next Day"
+text = "Урон"
 
-[node name="CloseBtn" type="Button" parent="DayPanel/VBoxContainer"]
+[node name="DamageValueLabel" type="Label" parent="Panel/VBoxContainer/ProgressGrid"]
 layout_mode = 2
-text = "x"
 
-[connection signal="pressed" from="DayPanel/VBoxContainer/HBoxContainer/NextDayButton" to="DayPanel" method="_on_next_day_button_pressed"]
-[connection signal="pressed" from="DayPanel/VBoxContainer/CloseBtn" to="DayPanel" method="_on_close_btn_pressed"]
+[node name="AllocBox" type="VBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="DailyLimitLabel" type="Label" parent="Panel/VBoxContainer/AllocBox"]
+layout_mode = 2
+text = "Лимит дня: 10"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/AllocBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/AllocBox/HBoxContainer"]
+layout_mode = 2
+text = "Поиск"
+
+[node name="SearchSlider" type="HSlider" parent="Panel/VBoxContainer/AllocBox/HBoxContainer"]
+layout_mode = 2
+max_value = 10.0
+
+[node name="SearchValueLabel" type="Label" parent="Panel/VBoxContainer/AllocBox/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/AllocBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/AllocBox/HBoxContainer2"]
+layout_mode = 2
+text = "Антенна"
+
+[node name="AntennaSlider" type="HSlider" parent="Panel/VBoxContainer/AllocBox/HBoxContainer2"]
+layout_mode = 2
+max_value = 10.0
+
+[node name="AntennaValueLabel" type="Label" parent="Panel/VBoxContainer/AllocBox/HBoxContainer2"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/VBoxContainer/AllocBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/AllocBox/HBoxContainer3"]
+layout_mode = 2
+text = "Щит"
+
+[node name="ShieldSlider" type="HSlider" parent="Panel/VBoxContainer/AllocBox/HBoxContainer3"]
+layout_mode = 2
+max_value = 10.0
+
+[node name="ShieldValueLabel" type="Label" parent="Panel/VBoxContainer/AllocBox/HBoxContainer3"]
+layout_mode = 2
+text = "0"
+
+[node name="AllocLeftLabel" type="Label" parent="Panel/VBoxContainer/AllocBox"]
+layout_mode = 2
+text = "Осталось распределить: 10"
+
+[node name="NextDayButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Следующий день"
