@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://cq4nbuofpjgq6"]
+
+[ext_resource type="Texture2D" uid="uid://1uvkf4dc8hey" path="res://assets/sprites/Drone.png" id="1_dil0n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knnud"]
+atlas = ExtResource("1_dil0n")
+region = Rect2(0, 384, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1r4ts"]
+atlas = ExtResource("1_dil0n")
+region = Rect2(96, 384, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umx5g"]
+atlas = ExtResource("1_dil0n")
+region = Rect2(192, 384, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1p8w"]
+atlas = ExtResource("1_dil0n")
+region = Rect2(288, 384, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6asb"]
+atlas = ExtResource("1_dil0n")
+region = Rect2(384, 384, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxcwj"]
+atlas = ExtResource("1_dil0n")
+region = Rect2(480, 384, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t4gt0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knnud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1r4ts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umx5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1p8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6asb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxcwj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Drone" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(60, -63)
+scale = Vector2(2.25, 2.3125)
+sprite_frames = SubResource("SpriteFrames_t4gt0")
+autoplay = "default"
+frame_progress = 0.0533308

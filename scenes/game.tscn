@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b3xdwy280r0aq"]
+[gd_scene load_steps=13 format=3 uid="uid://b3xdwy280r0aq"]
 
 [ext_resource type="Texture2D" uid="uid://013mxv8awqyb" path="res://assets/background/space-desktop-background-8uwm4y07uyctyyb1.jpg" id="1_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://dj2ufhhreaphi" path="res://assets/sprites/world_tileset.png" id="1_lnu2h"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://duogof8mwepfq" path="res://assets/sprites/spaceshuttle2.png" id="3_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://b33wjx8euq8m2" path="res://assets/background/background4acrop.PNG" id="4_p57ef"]
 [ext_resource type="PackedScene" uid="uid://d0ltkyftldw5m" path="res://scenes/enemies.tscn" id="7_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://cq4nbuofpjgq6" path="res://scenes/drone.tscn" id="8_gee14"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p57ef"]
 
@@ -1074,12 +1075,15 @@ scale = Vector2(1.76406, 1.63869)
 texture = ExtResource("4_p57ef")
 
 [node name="Shuttle" type="Sprite2D" parent="."]
-position = Vector2(-489, 146)
+position = Vector2(-581, 142)
 scale = Vector2(8.11719, 7.9375)
 texture = ExtResource("3_lbhrr")
 
 [node name="Captain" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(-488, 363)
+position = Vector2(-368, 363)
 
 [node name="Enemies" parent="." instance=ExtResource("7_u5sy4")]
-position = Vector2(394, 399)
+position = Vector2(398, 401)
+
+[node name="Drone" parent="." instance=ExtResource("8_gee14")]
+position = Vector2(-225, -225)
