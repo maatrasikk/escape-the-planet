@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dv0h1a2tpbj1b"]
+
+[ext_resource type="Texture2D" uid="uid://dlo2w1ebuckj2" path="res://assets/sprites/captain.png" id="1_3moy8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3moy8"]
+atlas = ExtResource("1_3moy8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yf7gk"]
+atlas = ExtResource("1_3moy8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tsyxl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3moy8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yf7gk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Captain" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(10, -24.5)
+scale = Vector2(3.375, 3.84375)
+sprite_frames = SubResource("SpriteFrames_tsyxl")
+autoplay = "default"

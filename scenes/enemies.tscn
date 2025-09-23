@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://d0ltkyftldw5m"]
+
+[ext_resource type="Texture2D" uid="uid://oe0qk304ogwi" path="res://assets/sprites/etp-enemy-1.png" id="1_y16gg"]
+[ext_resource type="Texture2D" uid="uid://hc14t2jdc5gi" path="res://assets/sprites/etp-enemy-2.png" id="2_q4yn1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4yn1"]
+atlas = ExtResource("1_y16gg")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad2ka"]
+atlas = ExtResource("1_y16gg")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5e8t"]
+atlas = ExtResource("1_y16gg")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_010eu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4yn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad2ka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5e8t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_010eu"]
+atlas = ExtResource("2_q4yn1")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfngh"]
+atlas = ExtResource("2_q4yn1")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_csyei"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_010eu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfngh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Enemies" type="CharacterBody2D"]
+
+[node name="Rose enemy" type="AnimatedSprite2D" parent="."]
+position = Vector2(-97, -100)
+scale = Vector2(2.96875, 3.10938)
+sprite_frames = SubResource("SpriteFrames_010eu")
+autoplay = "default"
+frame = 2
+frame_progress = 0.0577195
+
+[node name="Green Enemy" type="AnimatedSprite2D" parent="."]
+position = Vector2(191, -363)
+scale = Vector2(5.48438, 5.17188)
+sprite_frames = SubResource("SpriteFrames_csyei")
+autoplay = "default"
