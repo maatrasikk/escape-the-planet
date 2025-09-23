@@ -59,4 +59,4 @@ position = Vector2(60, -63)
 scale = Vector2(2.25, 2.3125)
 sprite_frames = SubResource("SpriteFrames_t4gt0")
 autoplay = "default"
-frame_progress = 0.0533308
+frame_progress = 0.0264138

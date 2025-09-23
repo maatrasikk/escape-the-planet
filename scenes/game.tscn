@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3xdwy280r0aq"]
+[gd_scene load_steps=21 format=3 uid="uid://b3xdwy280r0aq"]
 
 [ext_resource type="Texture2D" uid="uid://013mxv8awqyb" path="res://assets/background/space-desktop-background-8uwm4y07uyctyyb1.jpg" id="1_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://dj2ufhhreaphi" path="res://assets/sprites/world_tileset.png" id="1_lnu2h"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://b33wjx8euq8m2" path="res://assets/background/background4acrop.PNG" id="4_p57ef"]
 [ext_resource type="PackedScene" uid="uid://d0ltkyftldw5m" path="res://scenes/enemies.tscn" id="7_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://cq4nbuofpjgq6" path="res://scenes/drone.tscn" id="8_gee14"]
+[ext_resource type="PackedScene" uid="uid://cabsslgo7i8gx" path="res://scenes/pc.tscn" id="9_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://c6n4dtexb5qme" path="res://assets/sprites/protection field.png" id="10_vtaks"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p57ef"]
 
@@ -1053,6 +1055,49 @@ texture = ExtResource("3_iywne")
 sources/0 = SubResource("TileSetAtlasSource_lbhrr")
 sources/1 = SubResource("TileSetAtlasSource_p57ef")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvpfn"]
+atlas = ExtResource("10_vtaks")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dinhu"]
+atlas = ExtResource("10_vtaks")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvuet"]
+atlas = ExtResource("10_vtaks")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trtic"]
+atlas = ExtResource("10_vtaks")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir15t"]
+atlas = ExtResource("10_vtaks")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ca42v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvpfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dinhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvuet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trtic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ir15t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
 [node name="Game" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -1080,10 +1125,28 @@ scale = Vector2(8.11719, 7.9375)
 texture = ExtResource("3_lbhrr")
 
 [node name="Captain" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(-368, 363)
+position = Vector2(-233, 359)
 
 [node name="Enemies" parent="." instance=ExtResource("7_u5sy4")]
-position = Vector2(398, 401)
+position = Vector2(505, 399)
 
 [node name="Drone" parent="." instance=ExtResource("8_gee14")]
-position = Vector2(-225, -225)
+position = Vector2(-156, -264)
+
+[node name="Control" parent="." instance=ExtResource("9_0tnpc")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -92.0
+offset_top = 342.0
+offset_right = -92.0
+offset_bottom = 342.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(105, 104)
+scale = Vector2(7.99219, 9.21875)
+sprite_frames = SubResource("SpriteFrames_ca42v")
+autoplay = "default"
+frame_progress = 0.640437
