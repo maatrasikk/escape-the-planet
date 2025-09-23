@@ -33,10 +33,10 @@ func _refresh() -> void:
 	day_label.text = "День: %d" % GameState.day
 	energy_label.text = "Энергия: %d / %d" % [GameState.energy, GameState.energy_max]
 	spend_spin.min_value = 0
-	spend_spin.max_value = GameState.energy
+	spend_spin.max_value = min(GameState.energy, GameState.daily_spend_cap)
 	if spend_spin.value > spend_spin.max_value:
 		spend_spin.value = spend_spin.max_value
-		next_day_button.disabled = (GameState.energy <= 0)
+		next_day_button.disabled = (spend_spin.max_value == 0)
 
 func _on_day_changed(_d: int, _e: int) -> void:
 	if visible:
