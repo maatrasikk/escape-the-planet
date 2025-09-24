@@ -10,7 +10,7 @@ var day: int = 1
 var energy_max: int = 100
 var energy: int = energy_max
 
-var daily_spend_cap: int = 10  # максимум энергии за день
+var daily_spend_cap: int = 10  # максимум энергии тратится за день
 
 # Прогресс целей
 var debris_found: int = 0
@@ -21,7 +21,7 @@ var antenna_progress: int = 0  # 0..100
 var shield_hp: int = 100
 const SHIELD_HP_MAX: int = 100
 
-# Распределения энергии на текущий день
+# Распределения
 var alloc_search: int = 0
 var alloc_antenna: int = 0
 var alloc_shield: int = 0
@@ -30,28 +30,31 @@ var alloc_shield: int = 0
 var enemy_present: bool = false
 var last_enemy_damage: int = 0
 
-# Константы логики
+# Параметры баланса
 const ENEMY_SPAWN_CHANCE: float = 0.5
 const ENEMY_DAMAGE_MIN: int = 20
 const ENEMY_DAMAGE_MAX: int = 40
-const SHIELD_REPAIR_PER_ENERGY: int = 10  # 1 энергия = 10 HP щита
+const SHIELD_REPAIR_PER_ENERGY: int = 10  # 1 энергия = +10 HP
 
 var _rng := RandomNumberGenerator.new()
+
 
 func _ready() -> void:
 	_rng.randomize()
 
+
 func get_daily_limit() -> int:
 	return min(daily_spend_cap, energy)
+
 
 func get_daily_allocation_total() -> int:
 	return alloc_search + alloc_antenna + alloc_shield
 
+
 func get_daily_allocation_left() -> int:
 	return max(0, get_daily_limit() - get_daily_allocation_total())
 
-# КЛЮЧЕВАЯ ПРАВКА — упрощённая установка распределений:
-# (не заполняем насильно остаток, просто следим за лимитом)
+
 func set_allocations(search: int, antenna: int, shield: int) -> void:
 	var limit := get_daily_limit()
 	search = clampi(search, 0, limit)
@@ -61,7 +64,7 @@ func set_allocations(search: int, antenna: int, shield: int) -> void:
 	var total := search + antenna + shield
 	if total > limit:
 		var overflow := total - limit
-		# Сначала режем shield, потом antenna, потом search (приоритет сохранения "поиска")
+		# Приоритет — сохранить search
 		if shield >= overflow:
 			shield -= overflow
 			overflow = 0
@@ -81,30 +84,31 @@ func set_allocations(search: int, antenna: int, shield: int) -> void:
 	alloc_shield = shield
 	emit_signal("progress_changed")
 
+
 func next_day() -> void:
-	# 1. Списываем энергию за распределённое (но не больше реального доступного лимита)
+	# 1. Списываем энергию
 	var limit := get_daily_limit()
-	var total_alloc : int = min(get_daily_allocation_total(), limit)
+	var total_alloc: int = min(get_daily_allocation_total(), limit)
 	energy -= total_alloc
 	if energy < 0:
 		energy = 0
 
-	# 2. Поиск обломка (максимум один за день)
+	# 2. Поиск обломка
 	if debris_found < DEBRIS_NEEDED and alloc_search > 0:
-		var chance: float = clampf(float(alloc_search) * 0.1, 0.0, 1.0)  # 1 энергия = 10% шанса
+		var chance: float = clampf(float(alloc_search) * 0.1, 0.0, 1.0)
 		if _rng.randf() < chance:
 			debris_found += 1
 
-	# 3. Починка антенны (1 энергия = +4%)
+	# 3. Починка антенны
 	if alloc_antenna > 0 and antenna_progress < 100:
 		antenna_progress = min(100, antenna_progress + alloc_antenna * 4)
 
-	# 4. Ремонт щита (перед ударом врагов)
+	# 4. Ремонт щита (до атаки)
 	if alloc_shield > 0 and shield_hp < SHIELD_HP_MAX:
 		var repaired := alloc_shield * SHIELD_REPAIR_PER_ENERGY
 		shield_hp = min(SHIELD_HP_MAX, shield_hp + repaired)
 
-	# 5. Применяем урон врагов, если они были на поле
+	# 5. Урон врагов (если были)
 	last_enemy_damage = 0
 	if enemy_present:
 		last_enemy_damage = _rng.randi_range(ENEMY_DAMAGE_MIN, ENEMY_DAMAGE_MAX)
@@ -112,11 +116,10 @@ func next_day() -> void:
 		if shield_hp < 0:
 			shield_hp = 0
 
-	# 6. Проверка победы / поражения
+	# 6. Победа/поражение
 	var victory := get_victory_reached()
 	var defeat := false
 	var defeat_reason := ""
-
 	if shield_hp <= 0 and not victory:
 		defeat = true
 		defeat_reason = "shield_destroyed"
@@ -124,7 +127,7 @@ func next_day() -> void:
 		defeat = true
 		defeat_reason = "out_of_energy"
 
-	# 7. Спавн врагов на следующий день, если игра продолжается
+	# 7. Спавн врагов следующего дня
 	if not victory and not defeat:
 		enemy_present = (_rng.randf() < ENEMY_SPAWN_CHANCE)
 	else:
@@ -135,7 +138,7 @@ func next_day() -> void:
 	alloc_antenna = 0
 	alloc_shield = 0
 
-	# 9. Увеличиваем день
+	# 9. Следующий день
 	day += 1
 
 	# 10. Сигналы
@@ -145,10 +148,12 @@ func next_day() -> void:
 	emit_signal("enemy_state_changed", enemy_present, last_enemy_damage)
 
 	if victory or defeat:
-		emit_signal("game_over", victory, victory if victory else defeat_reason)
+		emit_signal("game_over", victory, "" if victory else defeat_reason)
+
 
 func get_victory_reached() -> bool:
 	return debris_found >= DEBRIS_NEEDED and antenna_progress >= 100
+
 
 func get_status_dict() -> Dictionary:
 	return {

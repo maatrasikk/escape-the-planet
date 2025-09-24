@@ -1,38 +1,28 @@
 extends Area2D
 
-@export_node_path("Control") var day_panel_path: NodePath
-@export var use_world_position: bool = true
+@export var panel_path: NodePath   # Укажешь в инспекторе
 
-@onready var day_panel: Control = (
-	get_tree().get_root().get_node_or_null("Main/CanvasLayer/DayPanel")
-	if day_panel_path.is_empty()
-	else get_node_or_null(day_panel_path)
-)
+func _ready():
+	print("[PC] ready. panel_path =", panel_path)
 
-func _ready() -> void:
-	if not day_panel:
-		push_warning("DayPanel не найден. Укажи путь в day_panel_path или проверь иерархию.")
-	connect("input_event", Callable(self, "_on_input_event"))
-
-func _on_input_event(viewport, event, shape_idx):
-	print("input_event пришёл: ", event)
-	if event is InputEventMouseButton \
-		and event.pressed \
-		and event.button_index == MOUSE_BUTTON_LEFT:
-
-		if not day_panel:
-			print("Клик по объекту, но day_panel = null")
+func _input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		if panel_path == NodePath():
+			push_error("[PC] panel_path НЕ задан в инспекторе.")
 			return
-
-		print("Клик: открываем панель")
-
-		if use_world_position and day_panel.has_method("open_at_world"):
-			day_panel.open_at_world(global_position)
+		var panel = get_node_or_null(panel_path)
+		if panel == null:
+			push_error("[PC] get_node(panel_path) вернул null. Текущий panel_path=" + str(panel_path))
+			return
+		print("[PC] panel=", panel, 
+			  " open=", panel.has_method("open"),
+			  " open_at_world=", panel.has_method("open_at_world"),
+			  " script=", panel.get_script())
+		if panel.has_method("open_at_world"):
+			print("[PC] Calling open_at_world")
+			panel.call("open_at_world", global_position)
+		elif panel.has_method("open"):
+			print("[PC] Calling open")
+			panel.call("open")
 		else:
-			if day_panel.has_method("open"):
-				day_panel.call("open")
-			else:
-				day_panel.show()
-
-			if day_panel is Control:
-				day_panel.position = Vector2(48, 48)
+			push_error("Panel at path has no methods (open / open_at_world).")
