@@ -20,11 +20,11 @@ layout_mode = 2
 
 [node name="DayLabel" type="Label" parent="DayPanel/VBoxContainer/TopRow"]
 layout_mode = 2
-text = "День: 1"
+text = "Day: 1"
 
 [node name="EnergyLabel" type="Label" parent="DayPanel/VBoxContainer/TopRow"]
 layout_mode = 2
-text = "Энергия: 100 / 100"
+text = "Energy: 100 / 100"
 
 [node name="CloseBtn" type="Button" parent="DayPanel/VBoxContainer/TopRow"]
 layout_mode = 2
@@ -67,14 +67,14 @@ layout_mode = 2
 
 [node name="DailyLimitLabel" type="Label" parent="DayPanel/VBoxContainer/AllocBox"]
 layout_mode = 2
-text = "Лимит дня: 10"
+text = "Day Limit: 10"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="DayPanel/VBoxContainer/AllocBox"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="DayPanel/VBoxContainer/AllocBox/HBoxContainer"]
 layout_mode = 2
-text = "Поиск"
+text = "Search"
 
 [node name="SearchSlider" type="HSlider" parent="DayPanel/VBoxContainer/AllocBox/HBoxContainer"]
 layout_mode = 2
@@ -89,7 +89,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="DayPanel/VBoxContainer/AllocBox/HBoxContainer2"]
 layout_mode = 2
-text = "Антенна"
+text = "Antenna"
 
 [node name="AntennaSlider" type="HSlider" parent="DayPanel/VBoxContainer/AllocBox/HBoxContainer2"]
 layout_mode = 2
@@ -104,7 +104,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="DayPanel/VBoxContainer/AllocBox/HBoxContainer3"]
 layout_mode = 2
-text = "Щит"
+text = "Shield"
 
 [node name="ShieldSlider" type="HSlider" parent="DayPanel/VBoxContainer/AllocBox/HBoxContainer3"]
 layout_mode = 2
@@ -116,8 +116,8 @@ text = "0"
 
 [node name="AllocLeftLabel" type="Label" parent="DayPanel/VBoxContainer/AllocBox"]
 layout_mode = 2
-text = "Осталось распределить: 10"
+text = "Energy to replenish: 10"
 
 [node name="NextDayButton" type="Button" parent="DayPanel/VBoxContainer"]
 layout_mode = 2
-text = "Следующий день"
+text = "Next Day"
